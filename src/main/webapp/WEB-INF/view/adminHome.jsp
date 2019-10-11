@@ -19,11 +19,9 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SOCIETY MAINTENANCE - ${title}</title>
+<title>HousingSociety-${title}</title>
 <script>
-
 	window.contextRoot = '${contextRoot}'
-	
 </script>
 
 <!-- Bootstrap core CSS -->
@@ -40,86 +38,89 @@
 </head>
 
 <body>
-<div class="wrapper">
-<!-- navbar -->
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="${contextRoot}/adminHome">Society Maintenance</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="${contextRoot}/adminLogout">ADMIN LOGIN</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<%
+response.setHeader("Cache-Control" , "no-cache , no-store , must-revalidate");
+if(session.getAttribute("adminid") == null)
+{
+	 response.sendRedirect("adminlogin");
+}
 
-	<div class="contentt">
-	<!-- navbar -->
-<div class="container">
+%>
 
-	<div class="row">
+	<div class="wrapper">
+		<!-- navbar -->
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href=" ">Housing-Society</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="${contextRoot}/Admin">Admin	Home</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="${contextRoot}/adminLogout"><span
+							class="glyphicon glyphicon-log-out"></span> Admin Logout</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="content">
+			<!-- navbar -->
+			<div class="container">
+
+				<div class="row">
 
 
-		<!-- Would be to display sidebar -->
-		<div class="col-md-3" style="margin-top: 40px;">
+					<!-- Would be to display sidebar -->
+					<div class="col-md-3" style="margin-top: 35px;">
 
-			<a href="#" class="list-group-item" >SOCIETY</a>
-			<a href="#" class="list-group-item" >SOCIETY MEMBER</a>
-			<a href="#" class="list-group-item" >SOCCIETY BLOCK</a>
-			<a href="#" class="list-group-item" >FUUND CATEGORY</a>
-			<a href="#" class="list-group-item" >EXPENCE CATEGORY</a>
-			<a href="#" class="list-group-item" >FUND TRANSACCTION</a>
-			<a href="#" class="list-group-item" >EXPENSE TRANSACCTION</a>
-									
+						<a href="${contextRoot}/Society" class="list-group-item">SOCIETY</a>
+						<a href="${contextRoot}/Member" class="list-group-item">SOCIETY MEMBER</a> 
+						<a href="${contextRoot}/Block" class="list-group-item">SOCCIETY	BLOCK</a>
+						<a href="${contextRoot}/Facilitator" class="list-group-item">FACILITATOR</a>
+						<a href="${contextRoot}/FundCategory" class="list-group-item">FUND CATEGORY</a> 
+						<a href="${contextRoot}/ExpenseCategory" class="list-group-item">EXPENCE CATEGORY</a> 
+						<a href="#" class="list-group-item">FUND TRANSACCTION</a>
+					    <a href="#" class="list-group-item">EXPENSE TRANSACCTION</a>
 
-		</div>
+					</div>
 
-		<!-- to displa -->
-		<div class="col-md-9">
-          <a href="#link" class="btn btn-primary" role="button"style="margin-left: 532px;margin-bottom: -55px;">ADD SOCCIETY</a>
-			<div class="row">
-			
-				<div class="col-xs-12">
-					<table id="SocietyListTable" class="table table-striped table-borderd" width="850">
+
+					<!-- for all society -->
+					<c:if test="${userclicksociety  == true}">
+						<%@include file="./adminhome/societylist.jsp"%>
+					</c:if>
+					<!-- for all member -->
+					<c:if test="${userclickmember  == true}">
+						<%@include file="./adminhome/memberlist.jsp"%>
+					</c:if>
+					<c:if test="${userclickfacilitator  == true}">
+						<%@include file="./adminhome/facilitatorlist.jsp"%>
+					</c:if>
 					
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Address</th>
-								<th>Fund</th>
-								<th></th>	
-							</tr>						
-						</thead>				
-					</table>				
-				</div>			
+				</div>
+
 			</div>
 		</div>
-	</div>
-
-</div>
-</div>
-  <!-- Footer -->
+		<!-- Footer -->
 		<%@include file="./shared/footer.jsp"%>
+
 		<!-- jQuery -->
 		<script src="${js}/jquery.js"></script>
-		
-		<!-- Bootstrap Core JavaScript -->
 		<script src="${js}/bootstrap.min.js"></script>
-		
+
+
 		<!-- DataTable Plugin -->
 		<script src="${js}/jquery.dataTables.js"></script>
-		
+
 		<!-- DataTable Bootstrap Script -->
 		<script src="${js}/dataTables.bootstrap.js"></script>
-		
+
+		<script src="${js}/bootstrap-confirmation.js"></script>
+
 		<!-- Self coded javascript -->
 		<script src="${js}/myapp.js"></script>
-</div>
+	</div>
 </body>
 
 </html>

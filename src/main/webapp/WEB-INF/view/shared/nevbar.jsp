@@ -1,21 +1,23 @@
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="${contextRoot}/">Society Maintenance</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="${contextRoot}/login">LOGIN</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="${contextRoot}/signIn">SIGN IN</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="${contextRoot}/adminlogin">ADMIN LOGIN</a>
-          </li>
-        </ul>
-      </div>
+
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Housing-Society</a>
     </div>
-  </nav>
+    <ul class="nav navbar-nav">
+     <li class="active"><a href="${contextRoot}/">Home</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+<li><a href="${contextRoot}/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li><a href="${contextRoot}/signIn"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="${contextRoot}/adminlogin"><span class="glyphicon glyphicon-log-in"></span> Admin Login</a></li>
+    </ul>
+  </div>
+</nav>
+  
+
+
+
+
+  

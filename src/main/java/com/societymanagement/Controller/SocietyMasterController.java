@@ -20,12 +20,14 @@ public class SocietyMasterController {
 	
 	@RequestMapping(value = "/addSociety", method = RequestMethod.POST)
 	public boolean addSociety(@RequestBody SocietyMaster society) {
-		 return societyMasterImpl.addSociety(society);
+		return societyMasterImpl.addSociety(society);
+		
 		}
 	
 	@RequestMapping(value = "/allSociety", method = RequestMethod.GET)
 	public List<SocietyMaster> allSociety()
 	{
+		
 		return societyMasterImpl.allSociety();
 		
 	}
@@ -41,9 +43,9 @@ public class SocietyMasterController {
 		
 	}
 	@RequestMapping(value = "/deleteSociety/{id}",method = RequestMethod.GET)
-	public void deleteSociety(@PathVariable("id") int societyId) {
-		societyMasterImpl.deleteSociety(societyId);
-		
+	public boolean deleteSociety(@PathVariable("id") int societyId) {
+		return societyMasterImpl.deleteSociety(societyId);
+	     
 	}
 
 }

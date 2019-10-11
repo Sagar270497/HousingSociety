@@ -13,6 +13,7 @@ public interface MemberDao {
 	public boolean updateMember(Member member,int memberId);
 	public boolean deleteMember(int memberId);
 	public Member getMember(int memberId);
+	public List<Member> MemberListById(int memberId);
 
 	
 }

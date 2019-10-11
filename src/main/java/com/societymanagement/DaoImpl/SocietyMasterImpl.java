@@ -30,14 +30,17 @@ public class SocietyMasterImpl implements SocietyMasterDao{
 		entityManager.persist(society);
 		entityManager.getTransaction().commit();
 		return true;
-			
 	
 	}
 
 	public boolean updateSociety(SocietyMaster society, int societyId) {
-		entityManager.getTransaction().begin();
-		entityManager.find(SocietyMaster.class, societyId);
-		entityManager.merge(society);
+		
+		 SocietyMaster societyMaster = entityManager.find(SocietyMaster.class,societyId);
+		 entityManager.getTransaction().begin();
+		 societyMaster.setSocietyName(society.getSocietyName());
+		 societyMaster.setSocietyAdd(society.getSocietyAdd());
+		 societyMaster.setSocietyCity(society.getSocietyCity());
+		 societyMaster.setSocietyFund(society.getSocietyFund());
 		entityManager.getTransaction().commit();
 		return true;
 		
