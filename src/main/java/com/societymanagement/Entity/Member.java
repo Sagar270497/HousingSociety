@@ -1,39 +1,54 @@
 package com.societymanagement.Entity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "MEMBER")
 public class Member {
 	@Id
+	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int memberId;
-	private String memberName;
-	private String memberAdd;
+	private String fname;
+	private String lname;
 	private String email;
-	private int mobileNo;
+	private int mobile;
+	@JsonIgnore
 	private int societyId;
-	private String userId;
+	@JsonIgnore
+	private int blockId;
+	@JsonIgnore
+	private String userName;
+	@JsonIgnore
 	private String password;
 	
+	
+
 	public int getMemberId() {
 		return memberId;
 	}
 	public void setMemberId(int memberId) {
 		this.memberId = memberId;
 	}
-	public String getMemberName() {
-		return memberName;
+	public String getFname() {
+		return fname;
 	}
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
+	public void setFname(String fname) {
+		this.fname = fname;
 	}
-	public String getMemberAdd() {
-		return memberAdd;
+	public String getLname() {
+		return lname;
 	}
-	public void setMemberAdd(String memberAdd) {
-		this.memberAdd = memberAdd;
+	public void setLname(String lname) {
+		this.lname = lname;
 	}
 	public String getEmail() {
 		return email;
@@ -41,11 +56,11 @@ public class Member {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getMobileNo() {
-		return mobileNo;
+	public int getMobile() {
+		return mobile;
 	}
-	public void setMobileNo(int mobileNo) {
-		this.mobileNo = mobileNo;
+	public void setMobile(int mobile) {
+		this.mobile = mobile;
 	}
 	public int getSocietyId() {
 		return societyId;
@@ -53,11 +68,17 @@ public class Member {
 	public void setSocietyId(int societyId) {
 		this.societyId = societyId;
 	}
-	public String getUserId() {
-		return userId;
+	public int getBlockId() {
+		return blockId;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setBlockId(int blockId) {
+		this.blockId = blockId;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public String getPassword() {
 		return password;
@@ -67,6 +88,6 @@ public class Member {
 	}
 	
 	
-	
-
 }
+	
+	

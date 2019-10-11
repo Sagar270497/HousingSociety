@@ -19,7 +19,11 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SOCIETY MAINTENANCE - ${title}</title>
+<title>HousingSociety-${title}</title>
+<script>
+	window.contextRoot = '${contextRoot}'
+</script>
+
 
 <!-- Bootstrap core CSS -->
 <link href="${css}/bootstrap.min.css" rel="stylesheet">
@@ -40,14 +44,14 @@
 		<div class="content">
 			<!--Page Content-->
 			<c:if test="${userclickhome  == true}">
-				<%@include file="home.jsp"%>
+				<%@include file="./home/home.jsp"%>
 			</c:if>
 
 			<c:if test="${userclickadminlogin  == true}">
-				<%@include file="adminlogin.jsp"%>
+				<%@include file="./home/adminlogin.jsp"%>
 			</c:if>
 			<c:if test="${userclicklogin  == true}">
-				<%@include file="login.jsp"%>
+				<%@include file="./home/login.jsp"%>
 			</c:if>
 
 		</div>
@@ -56,9 +60,10 @@
 
 		<!-- Bootstrap core JavaScript -->
 		<script src="${js}/jquery.min.js"></script>
-		<script src="${js}/bootstrap.bundle.min.js"></script>
+		<script src="${js}/bootstrap.min.js"></script>
 		<script src="${js}/effect-login.js"></script>
-		
+		<!-- Self coded javascript -->
+		<script src="${js}/myapp.js"></script>
 	</div>
 </body>
 

@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.societymanagement.Dao.MemberDao;
+import com.societymanagement.Entity.Admin;
 import com.societymanagement.Entity.Member;
 @Service
 public class MemberImpl implements MemberDao {
@@ -54,6 +56,16 @@ public class MemberImpl implements MemberDao {
 		member = entityManager.find(Member.class, memberId);
 		entityManager.getTransaction().commit();
         return member;
+	}
+
+	public List<Member> MemberListById(int societyId) {
+		entityManager.getTransaction().begin();
+		List<Member> member = new ArrayList<Member>();
+		Query query = entityManager.createQuery(
+				"SELECT e FROM Member e WHERE e.societyId = " + societyId );
+		member = (List<Member>) query.getResultList();
+		entityManager.getTransaction().commit();
+		return member;
 	}
 
 }

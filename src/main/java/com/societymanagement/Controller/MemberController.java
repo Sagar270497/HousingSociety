@@ -46,5 +46,10 @@ public class MemberController {
 		return memberImpl.deleteMember(memberId);
 
 	}
+	@RequestMapping(value = "/MemberListById/{id}", method = RequestMethod.GET)
+	public List<Member> MemberListById(@PathVariable("id") int societyId) {
+		return memberImpl.MemberListById(societyId);
+
+	}
 
 }

@@ -4,19 +4,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.societymanagement.DaoImpl.LoginServiceImpl;
 import com.societymanagement.Entity.Admin;
-import com.societymanagement.Entity.Member;
 
-@Controller
+@RestController
 public class PageController {
 
 	@Autowired
@@ -40,27 +39,33 @@ public class PageController {
 
 	}
 
-	@RequestMapping(value = "/checAdminkLogin", method = RequestMethod.POST)
+	@RequestMapping(value = "/checkAdminLogin", method = RequestMethod.POST)
 	public ModelAndView checkLogin(@ModelAttribute Admin admin, HttpServletRequest request) {
 		Admin dbadmin = loginServiceImpl.checkAdminLogin(admin.getAdminId(), admin.getAdminPassword());
 		if (dbadmin != null) {
 			HttpSession session = request.getSession();
-			session.setAttribute("username", dbadmin.getAdminId());
-			session.setAttribute("password", dbadmin.getAdminPassword());
-			session.setMaxInactiveInterval(0);
-			return new ModelAndView("redirect:/adminHome");
-		}
+			session.setMaxInactiveInterval(50*60);
+			session.setAttribute("adminid", dbadmin.getAdminId());
+			return new ModelAndView("redirect:/Admin");
+		}else {
 		
-		ModelAndView mv = new ModelAndView("adminlogin");
-		mv.addObject("message" ,"Invalid User Name Or Password");
-		return mv;
+			return new ModelAndView("redirect:/adminlogin");
+		}
 	}
-	@RequestMapping(value = "/adminHome")
+	@RequestMapping(value = "/Admin")
 	public ModelAndView adminHome() {
 		ModelAndView mv = new ModelAndView("adminHome");
 		mv.addObject("title", "ADMIN HOME");
+		mv.addObject("userclicksociety", true);
 		return mv;
-
+		
+	}
+	
+	@RequestMapping(value = "/changeAdminPwd/{id}",method = RequestMethod.PUT)
+	public boolean changeAdminPwd(@RequestBody Admin admin,@PathVariable("id") String adminId)
+	{
+		return loginServiceImpl.changeAdminPwd(admin, adminId) ;
+		
 	}
 	
 	@RequestMapping(value = "/adminLogout", method = RequestMethod.GET)
