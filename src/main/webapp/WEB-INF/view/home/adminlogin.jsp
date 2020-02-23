@@ -19,7 +19,7 @@
 				required="">
 		</div>
 		<div>
-			<span style="color: red">${message}</span>
+			<span style="color: red">"${message}"</span>
 		</div>
 		<!-- checkbox -->
 		<div class="wthree-text">

@@ -48,8 +48,12 @@ public class PageController {
 			session.setAttribute("adminid", dbadmin.getAdminId());
 			return new ModelAndView("redirect:/Admin");
 		}else {
-		
-			return new ModelAndView("redirect:/adminlogin");
+			ModelAndView mv = new ModelAndView("page");
+			mv.addObject("title", "ADMIN lOGIN");
+			mv.addObject("userclickadminlogin", true);
+			mv.addObject("message","invalid username and password login again");
+			return mv;
+			//return new ModelAndView("redirect:/adminlogin");
 		}
 	}
 	@RequestMapping(value = "/Admin")
