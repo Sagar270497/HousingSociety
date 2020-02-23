@@ -68,8 +68,17 @@ if(session.getAttribute("adminid") == null)
 			<!-- navbar -->
 			<div class="container">
 
-				<div class="row">
-
+			 <div class="row">
+      
+            <div class = "col-xs-12">
+             
+               <div class = "alert alert-success alert-dismissible">
+               <button type = "button" class= "close" data-dismiss = "alert">&times;</button>
+               <div class="alert alert-info fade in" id="societymessage"></div>
+               </div>
+            
+            </div>
+          
 
 					<!-- Would be to display sidebar -->
 					<div class="col-md-3" style="margin-top: 35px;">
@@ -84,7 +93,7 @@ if(session.getAttribute("adminid") == null)
 					    <a href="#" class="list-group-item">EXPENSE TRANSACCTION</a>
 
 					</div>
-
+                
 
 					<!-- for all society -->
 					<c:if test="${userclicksociety  == true}">
@@ -98,6 +107,11 @@ if(session.getAttribute("adminid") == null)
 						<%@include file="./adminhome/facilitatorlist.jsp"%>
 					</c:if>
 					
+					<!-- for all society -->
+					<c:if test="${userclickfundcategory  == true}">
+						<%@include file="./adminhome/fundcategory.jsp"%>
+					</c:if>
+				
 				</div>
 
 			</div>
@@ -106,9 +120,12 @@ if(session.getAttribute("adminid") == null)
 		<%@include file="./shared/footer.jsp"%>
 
 		<!-- jQuery -->
+		
+		
 		<script src="${js}/jquery.js"></script>
+		<script src="${js}/jquery.min.js"></script>
 		<script src="${js}/bootstrap.min.js"></script>
-
+       
 
 		<!-- DataTable Plugin -->
 		<script src="${js}/jquery.dataTables.js"></script>

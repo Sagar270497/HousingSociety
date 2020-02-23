@@ -1,6 +1,9 @@
 package com.societymanagement.Entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -9,6 +12,7 @@ import javax.persistence.Table;
 public class FundCategory {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int fundId; 
 	private String fundName;
 	private int fundAmmount;

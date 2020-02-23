@@ -100,13 +100,14 @@ $("#addEditSociety1").submit(function(event){
                   contentType: 'application/json',
       	          dataType: 'json',
                   success: function(responseText){
+                	  
                 	  if (responseText !== null) {
-                          $('#response').text(responseText);
+                          $('#societymessage').text(responseText);
                       } else {
                           alert("Invalid Name");
                       }
+                	  
                 	  location.href = window.contextRoot	+ '/Society';
-             
                   },
                   error: function (error) {
                       alert(error);
@@ -363,5 +364,137 @@ function editFacilitator(data){
         }
     })
 }
+
+//Fund Catagory List
+var $table = $('#FundCategory');
+// execute the below code only where we have this table
+
+if ($table.length) {
+	// console.log('Inside the table!');
+
+	var jsonUrl = '';
+	jsonUrl = window.contextRoot + '/fundcategory/allFund';
+	$table
+			.DataTable({
+
+				lengthMenu : [ [3, 5, 10, -1 ], [ '3 Records', '5 Records', '10 Records', 'ALL' ] ],
+				pageLength : 6,
+				ajax : {
+					url : jsonUrl,
+					dataSrc : ''
+				},
+				columns : [
+
+						{
+							data : 'fundName'
+						},
+						{
+							data : 'fundAmmount'
+						},
+						{
+							data : 'isReguler'
+						},
+						{
+							data : 'comment'
+						},
+						{
+							data : 'fundId',
+							bSortable : false,
+							mRender : function(data,type,row) {
+
+								var str = '';
+							
+								str +=  '<button type="button" class="btn btn-primary" onclick="editFund('+data+')"><span class="glyphicon glyphicon-pencil"></span></button>&#160;';
+								str += '<span class="btn btn-danger" onclick="deleteFund('+data+')"> <span class="glyphicon glyphicon-trash"></span>';
+								
+							
+									return str;
+							}
+						}
+
+				]
+			});
+}
+
+
+$("#addEditFund1").submit(function(event){
+	event.preventDefault();
+          var cafund = {};
+          var dynamicURL = "";
+          var methodName = "";
+          cafund.fundName = $('#fundName').val();
+          cafund.fundAmmount = $('#fundAmmount').val();
+          cafund.isReguler = $('#isReguler').val();
+          cafund.comment = $('#comment').val();
+              var cafund1 = $('#fundId').val();
+              if(cafund1){
+                  //update it
+                  dynamicURL = window.contextRoot + '/fundcategory/updateFund/'+ cafund1;
+                  methodName = "PUT";
+              }else{
+                  //save it
+                  dynamicURL = window.contextRoot + '/fundcategory/addFund';
+                  methodName = "POST";
+              }
+              var cafundObj = JSON.stringify(cafund);
+              $.ajax({
+                  url: dynamicURL,
+                  method: methodName,
+                  data: cafundObj,
+                  contentType: 'application/json',
+      	          dataType: 'json',
+                  success: function(responseText){
+                	  if (responseText !== null) {
+                          $('#response').text(responseText);
+                      } else {
+                          alert("Invalid Name");
+                      }
+                	  location.href = window.contextRoot + '/FundCategory';
+             
+                  },
+                  error: function (error) {
+                      alert(error);
+                  }
+              })
+ });
+
+function editFund(data){
+	 $("#addEditFund").modal('toggle');
+	 $.ajax({
+        url: window.contextRoot	+ '/fundcategory/getFund/'+ data,
+        method: 'GET',
+        dataType: 'json',
+        success: function (data1) {
+       	 $('#fundId').val(data1.fundId);
+            $('#fundName').val(data1.fundName);
+             $('#fundAmmount').val(data1.fundAmmount);
+            $('#isReguler').val(data1.isReguler);
+            $('#comment').val(data1.comment); 
+           
+        },
+        error: function (error) {
+            alert(error);
+        }
+    })
+}
+
+
+function deleteFund(data){
+	
+	if(confirm("Are You Sure"))
+	  $.ajax({
+	        url: window.contextRoot	+ '/fundcategory/deleteFund/'	+ data,
+	        contentType: 'application/json',
+	        dataType: 'json',
+	        type: 'GET',
+	        success:function(){
+	        	 location.href = window.contextRoot	+ '/FundCategory';
+	            }
+      })
+	
+}
+
+
+
 
 
