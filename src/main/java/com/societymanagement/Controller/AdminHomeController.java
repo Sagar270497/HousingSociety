@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class AdminHomeController {
 	
-	@RequestMapping(value = "/Society")
+	@RequestMapping(value = "/Society")             //Mukesh Kumar
 	public ModelAndView society() {
 		ModelAndView mv = new ModelAndView("adminHome");
 		mv.addObject("title", "ADMIN HOME");
