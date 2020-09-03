@@ -30,7 +30,7 @@ public class AdminHomeController {
 		return mv;
 
 	}
-	@RequestMapping(value = "/Facilitator")
+	@RequestMapping(value = "/Facilitator")hjhgjhj
 	public ModelAndView facilitator() {
 		ModelAndView mv = new ModelAndView("adminHome");
 		mv.addObject("title", "ADMIN HOME");
